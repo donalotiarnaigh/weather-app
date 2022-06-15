@@ -2,12 +2,14 @@ const express = require('express');
 const https = require("https");
 const app = express()
 const bodyParser = require("body-parser");
+const ejs = require("ejs");
 
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.render("home");
 });
 
 app.post("/", function(req, res) {
@@ -30,11 +32,8 @@ app.post("/", function(req, res) {
         const location = query.charAt(0).toUpperCase() + query.slice(1);
         const imageURL = 'http://openweathermap.org/img/wn/' + icon +  '@2x.png';
 
-        res.write("<h1> The temperature is " + temp + " degrees celcius in "+ location + " </h1>");
-        res.write("<h2>The weather in "+ location + " is: " + description + " <h2>");
-        res.write("<img src='" + imageURL+ "'/>");
-        res.send();
 
+        res.render("weather", {temp: temp, description: description, icon:icon, location: location, imageURL:imageURL});
     })
   })});
 
