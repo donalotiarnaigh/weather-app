@@ -19,6 +19,13 @@
 	padding-bottom: 60px;
 }
 
+body{
+  position: absolute;
+  text-align: center;
+
+}
+
+
 .footer {
 	position: absolute;
 	text-align: center;
