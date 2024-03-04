@@ -1,42 +1,136 @@
-body{
-  position: absolute;
-  margin: auto;
-  text-align: center;
-  min-height: 100vh;
-  min-width: 100%;
-}
-.container-fluid {
-    padding-top: 70px;
-    padding-bottom: 70px;
-}
-.navbar {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border: 0;
-    border-radius: 0;
-    margin-bottom: 0;
-    font-size: 12px;
-    letter-spacing: 5px;
-}
-.navbar-nav  li a:hover {
-    color: #1abc9c !important;
+/* Global styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
 }
 
+a, .navbar-brand {
+  color: #fff; /* White text for all links and brand */
+}
+
+a:hover, a:focus, .navbar-brand:hover {
+  color: #ccc; /* Light grey for hover and focus states */
+}
+
+/* Container layout */
+.container-fluid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: calc(100vh - 60px); /* Adjust for the height of the navbar */
+  padding: 70px 0;
+}
+
+/* Navbar styles */
+.navbar {
+  width: 100%;
+  background-color: #3498db;
+  padding: 15px 0;
+  font-size: 14px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-brand,
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-brand {
+  color: #fff; /* This sets the text color to white */
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-brand:hover {
+  color: #ccc; /* Light grey color for hover effect */
+}
+
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-brand:focus {
+  color: #ccc; /* Light grey color for focus effect */
+  outline: none; /* Optional: removes the default focus outline */
+  background-color: transparent; /* Optional: ensures the background color doesn't change on focus */
+}
+
+
+.navbar-nav li a {
+  transition: color 0.3s;
+}
+
+/* Search input and button styles */
+.search-input {
+  font-size: 1em;
+  padding: 10px;
+  margin: 20px 0;
+  width: 300px;
+  border: 2px solid #2980b9;
+  border-radius: 4px;
+  color: #333;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: #1abc9c;
+}
+
+/* Result title and icon styles */
+.result-title {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.weather-icon {
+  font-size: 4em;
+  margin: 20px 0;
+}
+
+.weather-result {
+  padding-top: 70px; /* Adjust this value to match the height of your navbar */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Footer styles */
 .footer-padding {
-	padding-bottom: 60px;
+  padding-bottom: 60px; /* Space above footer */
 }
 
 .footer {
-	position: absolute;
-	text-align: center;
-	bottom: 0;
-	width: 100%;
-	height: 60px;
-	background-color: #1abc9c;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3498db;
+  text-align: center;
+  height: 60px;
+  line-height: 60px; /* Center text vertically */
 }
 
-.footer p {
-	margin-top: 25px;
-	font-size: 12px;
-  color: #fff;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    font-size: 10px;
+  }
+
+  .search-input, .search-button, .main-title, .result-title {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .weather-icon {
+    font-size: 3em;
+  }
 }

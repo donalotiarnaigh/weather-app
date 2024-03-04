@@ -1,6 +1,6 @@
-# fly.toml file generated for frosty-thunder-5024 on 2022-09-21T21:36:31+02:00
+# fly.toml file generated for sparkling-tree-3067 on 2022-10-05T23:30:27+02:00
 
-app = "frosty-thunder-5024"
+app = "sparkling-tree-3067"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []

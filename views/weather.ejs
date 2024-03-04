@@ -1,10 +1,15 @@
 <%- include("partials/header"); -%>
 
-<h1> The temperature is  <%=temp%> degrees celcius in <%=location%> </h1>
-<h2>The weather in <%=location%> is: <%=description%> <h2>
-<img src='<%=imageURL%>'/>
-
-
-
+<div class="weather-result">
+  <h1 class="result-title">
+    The temperature is <%= temp %> degrees Celsius in <%= location %>
+  </h1>
+  <h2>The weather in <%= location %> is: <%= description %></h2>
+  <img
+    src="<%= imageURL %>"
+    alt="Weather icon for <%= description %>"
+    class="weather-icon"
+  />
+</div>
 
 <%- include("partials/footer"); -%>
