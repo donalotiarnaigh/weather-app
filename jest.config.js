@@ -16,6 +16,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   clearMocks: true,
   testTimeout: 10000,
+  setupFilesAfterEnv: ['./jest.setup.js'],
   coverageThreshold: {
     global: {
       statements: 75,
