@@ -1,0 +1,45 @@
+:root {
+  /* Primary Colors */
+  --primary: #0d6efd;         /* Bootstrap 5 primary blue */
+  --primary-dark: #0a58ca;    /* Darker shade for hover states */
+  --primary-light: #cfe2ff;   /* Light shade for backgrounds */
+  
+  /* Secondary Colors */
+  --secondary: #6c757d;       /* Bootstrap 5 secondary grey */
+  --secondary-light: #e9ecef; /* Light shade for backgrounds */
+  
+  /* Accent Colors */
+  --accent: #198754;          /* Success green */
+  --accent-light: #d1e7dd;    /* Light green background */
+  --warning: #ffc107;         /* Warning yellow */
+  --warning-light: #fff3cd;   /* Light yellow background */
+  --danger: #dc3545;          /* Danger red */
+  --danger-light: #f8d7da;    /* Light red background */
+  --info: #0dcaf0;            /* Info blue */
+  --info-light: #cff4fc;      /* Light info background */
+  
+  /* Neutral Colors */
+  --dark: #212529;            /* Dark text color - high contrast */
+  --light: #f8f9fa;           /* Light background */
+  --white: #ffffff;           /* White */
+  
+  /* Weather Condition Colors */
+  --sunny: #ffc107;           /* Sunny yellow */
+  --cloudy: #adb5bd;          /* Cloudy grey */
+  --rainy: #6c757d;           /* Rainy darker grey */
+  --snowy: #e9ecef;           /* Snowy light grey */
+  --stormy: #495057;          /* Stormy dark grey */
+
+  /* Text Colors - All with at least 4.5:1 contrast ratio against their backgrounds */
+  --text-dark: #212529;       /* For light backgrounds */
+  --text-light: #f8f9fa;      /* For dark backgrounds */
+  --text-muted: #6c757d;      /* Muted text that still maintains 4.5:1 contrast */
+  
+  /* Border Colors */
+  --border-color: #dee2e6;    /* Standard border color */
+  --border-light: #e9ecef;    /* Lighter border option */
+  
+  /* Shadow */
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+  --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+} 
