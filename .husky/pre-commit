@@ -3,3 +3,17 @@
 
 # Run fast checks: linting and formatting
 npx lint-staged
+
+# Run targeted accessibility test on changed EJS files
+if git diff --cached --name-only | grep -q "\.ejs$"; then
+  echo "🔍 Running accessibility tests on changed EJS files..."
+  # Only run if the app is already running, otherwise just display a warning
+  if curl -s http://localhost:3000 > /dev/null; then
+    # Run accessibility tests but allow commit even if tests fail
+    npm run test:a11y || echo "⚠️ Accessibility issues were found. Please check the reports in tests/accessibility/reports/"
+    echo "✅ Commit will proceed, but please fix accessibility issues before pushing."
+    exit 0
+  else
+    echo "⚠️ Warning: App is not running. Start the app with 'npm run dev' to automatically run accessibility tests."
+  fi
+fi

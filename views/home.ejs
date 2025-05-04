@@ -9,7 +9,7 @@
     </div>
     
     <div class="search-form-container">
-      <form action="/" method="post">
+      <form action="/" method="post" id="weatherForm">
         <div class="mb-4">
           <label for="cityInput" class="form-label fw-bold">
             Where would you like the current weather for?
@@ -26,12 +26,17 @@
               required
               autofocus
             />
-            <button type="submit" class="btn btn-primary" id="search-button">
+            <button type="submit" class="btn btn-primary" id="search-button" title="Search for weather information">
               <i class="bi bi-search me-1"></i> Search
             </button>
           </div>
         </div>
       </form>
+      
+      <!-- Loading skeleton will be shown during transitions -->
+      <div class="loading-container d-none">
+        <%- include("partials/loading-skeleton"); -%>
+      </div>
     </div>
     
     <div class="search-tips mt-4">
@@ -41,5 +46,8 @@
     </div>
   </div>
 </div>
+
+<!-- Include loading states JavaScript -->
+<script src="/js/loadingStates.js"></script>
 
 <%- include("partials/footer"); -%>
