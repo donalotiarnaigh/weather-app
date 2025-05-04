@@ -1,6 +1,6 @@
-<%- include("partials/header"); -%>
+<%- include("partials/header-fixed"); -%>
 
-<div class="home-container">
+<section class="home-container">
   <div class="weather-search-card">
     <div class="weather-result">
       <div class="weather-icon-container mb-3">
@@ -26,14 +26,14 @@
       
       <div class="mt-4">
         <a href="/" class="btn btn-primary btn-lg">
-          <i class="bi bi-arrow-left me-2"></i> Search Again
+          <i class="bi bi-arrow-left me-2" aria-hidden="true"></i> Search Again
         </a>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- Include loading states JavaScript -->
 <script src="/js/loadingStates.js"></script>
 
-<%- include("partials/footer"); -%>
+<%- include("partials/footer-fixed"); -%>

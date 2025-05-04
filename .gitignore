@@ -70,3 +70,7 @@ Thumbs.db
 docs/assessment/code-improvements.md
 docs/assessment/code-organization-assessment.md
 docs/assessment/js-performance-audit.md
+
+# Accessibility test outputs
+tests/accessibility/reports/
+tests/accessibility/screenshots/

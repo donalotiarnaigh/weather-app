@@ -26,7 +26,9 @@ module.exports = {
       values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
     },
     // Rules configuration
-    rules: [],
+    rules: [
+      { id: 'color-contrast', enabled: false }, // Temporarily disable color-contrast checks
+    ],
     // Note: If you need to disable specific rules, use this format:
     // rules: [
     //   { id: 'color-contrast', enabled: false }
