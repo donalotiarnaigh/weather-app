@@ -1,22 +1,33 @@
 <%- include("partials/header"); -%>
 
-<div class="weather-result card p-4">
-  <div class="card-body text-center">
-    <h1 class="result-title card-title">
-      The temperature is <%= temp %> degrees Celsius in <%= location %>
-    </h1>
-    <h2 class="weather-description card-subtitle mb-3">
-      The weather in <%= location %> is: <%= description %>
-    </h2>
-    <img
-      src="<%= imageURL %>"
-      alt="Weather icon for <%= description %>"
-      class="weather-icon img-fluid"
-    />
-    <div class="mt-4">
-      <a href="/" class="btn btn-primary">
-        <i class="bi bi-arrow-left"></i> Search Again
-      </a>
+<div class="home-container">
+  <div class="weather-search-card">
+    <div class="weather-result">
+      <div class="weather-icon-container mb-3">
+        <img
+          src="<%= imageURL %>"
+          alt="Weather icon for <%= description %>"
+          class="weather-icon"
+        />
+      </div>
+
+      <h1 class="result-title mb-3">
+        <%= location %>
+      </h1>
+      
+      <div class="temperature-display mb-4">
+        <span class="display-4 fw-bold"><%= temp %>°C</span>
+      </div>
+      
+      <h2 class="weather-description text-capitalize mb-4">
+        <%= description %>
+      </h2>
+      
+      <div class="mt-4">
+        <a href="/" class="btn btn-primary btn-lg">
+          <i class="bi bi-arrow-left me-2"></i> Search Again
+        </a>
+      </div>
     </div>
   </div>
 </div>
