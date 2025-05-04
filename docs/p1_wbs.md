@@ -39,11 +39,11 @@
   - 2.3.2 [✓] Create `config/app.js` for Express configuration
   - 2.3.3 [✓] Add configuration validation/defaults
 
-- **2.4 Services Layer Implementation**
-  - 2.4.1 Create `services/index.js` for service registry
-  - 2.4.2 Create `services/weatherService.js` for API interactions
-  - 2.4.3 Implement error handling in services
-  - 2.4.4 Add data validation and transformation
+- **2.4 Services Layer Implementation** ✓
+  - 2.4.1 [✓] Create `services/index.js` for service registry
+  - 2.4.2 [✓] Create `services/weatherService.js` for API interactions
+  - 2.4.3 [✓] Implement error handling in services
+  - 2.4.4 [✓] Add data validation and transformation
 
 - **2.5 Routes Implementation**
   - 2.5.1 Create `routes/index.js` for route registry
@@ -51,9 +51,9 @@
   - 2.5.3 Connect routes to services
   - 2.5.4 Implement proper HTTP status codes
 
-- **2.6 Utility Functions Implementation**
+- **2.6 Utility Functions Implementation** ✓
   - 2.6.1 [✓] Create `utils/index.js` for utility registry
-  - 2.6.2 Create `utils/httpUtils.js` for HTTP request helpers
+  - 2.6.2 [✓] Create `utils/httpUtils.js` for HTTP request helpers
   - 2.6.3 [✓] Add parameter validation utilities
 
 - **2.7 Main Application Refactoring**
@@ -65,14 +65,14 @@
 - **3.1 Error Middleware Creation**
   - 3.1.1 Create `middleware/index.js` for middleware registry
   - 3.1.2 Create `middleware/errorHandler.js` for global error handling
-  - 3.1.3 Implement custom error classes in `utils/errors.js`
+  - 3.1.3 [✓] Implement custom error classes in `utils/errors.js`
   - 3.1.4 Connect error handling to Express app
 
-- **3.2 API Error Handling**
-  - 3.2.1 Identify potential API error scenarios
-  - 3.2.2 Implement try/catch blocks for API calls
-  - 3.2.3 Create user-friendly error responses
-  - 3.2.4 Add logging for API errors
+- **3.2 API Error Handling** ✓
+  - 3.2.1 [✓] Identify potential API error scenarios
+  - 3.2.2 [✓] Implement try/catch blocks for API calls
+  - 3.2.3 [✓] Create user-friendly error responses
+  - 3.2.4 [✓] Add logging for API errors
 
 ### 4.0 Security Improvements
 - **4.1 Input Validation**
@@ -169,6 +169,13 @@
   - Created config/app.js for Express configuration
   - Added configuration validation with defaults
   - Created utility for configuration validation
+  
+- **2025-05-04**: Completed Services Layer and Utilities (Sections 2.4 and 2.6)
+  - Created services/index.js registry
+  - Implemented weatherService.js with API interactions
+  - Created HTTP utilities for API requests
+  - Implemented custom error classes
+  - Added error handling and data validation
 
 ## Dependencies and Prerequisites
 - Node.js and npm
@@ -179,8 +186,8 @@
 ## Estimated Time: 
 - **Total**: 30-40 hours
 - Environment Configuration: 4-5 hours ✓
-- Code Structure Modernization: 10-12 hours (In Progress: ~4 hours)
-- Error Handling Implementation: 4-5 hours
+- Code Structure Modernization: 10-12 hours (In Progress: ~6 hours)
+- Error Handling Implementation: 4-5 hours (Partially Completed: ~2 hours)
 - Security Improvements: 6-8 hours
 - Dependency Updates: 3-4 hours
 - Development Environment: 4-6 hours (Partially Completed: ~2 hours)
