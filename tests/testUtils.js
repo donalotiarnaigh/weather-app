@@ -2,7 +2,6 @@
  * Test utilities and helpers
  */
 
-const request = require('supertest');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -13,15 +12,15 @@ const path = require('path');
  */
 function createTestApp() {
   const app = express();
-  
+
   // Configure middleware
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
-  
+
   // Configure view engine
   app.set('view engine', 'ejs');
   app.set('views', path.join(process.cwd(), 'views'));
-  
+
   return app;
 }
 
@@ -42,22 +41,22 @@ function createTestAppWithRoutes(routeHandler) {
  */
 function mockResponse() {
   const res = {};
-  
+
   // Mock status method
   res.status = jest.fn().mockReturnValue(res);
-  
+
   // Mock json method
   res.json = jest.fn().mockReturnValue(res);
-  
+
   // Mock render method
   res.render = jest.fn().mockReturnValue(res);
-  
+
   // Mock send method
   res.send = jest.fn().mockReturnValue(res);
-  
+
   // Mock header method
   res.header = jest.fn().mockReturnValue(res);
-  
+
   return res;
 }
 
@@ -91,4 +90,4 @@ module.exports = {
   mockResponse,
   mockRequest,
   mockNext,
-}; 
+};

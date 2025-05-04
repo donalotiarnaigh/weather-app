@@ -19,4 +19,4 @@ describe('Validation Middleware', () => {
       expect(validationMiddleware.validateCityParam.length).toBeGreaterThan(0);
     });
   });
-}); 
+});

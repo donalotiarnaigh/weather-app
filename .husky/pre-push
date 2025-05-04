@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run the full test suite with coverage and enforce coverage thresholds
+npm test -- --coverage --coverageThreshold='{"global":{"statements":75,"branches":70,"functions":75,"lines":75}}' 

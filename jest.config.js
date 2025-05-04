@@ -16,4 +16,12 @@ module.exports = {
   coverageDirectory: 'coverage',
   clearMocks: true,
   testTimeout: 10000,
-}; 
+  coverageThreshold: {
+    global: {
+      statements: 75,
+      branches: 70,
+      functions: 75,
+      lines: 75,
+    },
+  },
+};
