@@ -25,4 +25,4 @@ function validateConfig(config, requiredKeys) {
   return true;
 }
 
-module.exports = { validateConfig }; 
+module.exports = { validateConfig };

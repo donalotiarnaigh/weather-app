@@ -23,10 +23,10 @@ async function getCurrentWeather(city, unit = config.defaultUnit) {
   try {
     // Build the API URL
     const apiUrl = `${config.openWeatherApiUrl}/weather?q=${encodeURIComponent(city)}&units=${unit}&appid=${config.openWeatherApiKey}`;
-    
+
     // Make the API request
     const weatherData = await httpsGet(apiUrl);
-    
+
     // Process and return the data
     return {
       location: city.charAt(0).toUpperCase() + city.slice(1),
@@ -36,14 +36,14 @@ async function getCurrentWeather(city, unit = config.defaultUnit) {
       humidity: weatherData.main.humidity,
       windSpeed: weatherData.wind.speed,
       pressure: weatherData.main.pressure,
-      imageURL: `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
+      imageURL: `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`,
     };
   } catch (error) {
     // Handle API errors
     if (error.message && error.message.includes('HTTP status code 404')) {
       throw new ValidationError(`City not found: ${city}`, { city: 'City not found' });
     }
-    
+
     // Re-throw API errors with proper context
     throw new ApiError(
       error.message || 'Error fetching weather data',
@@ -72,5 +72,5 @@ async function validateCity(city) {
 
 module.exports = {
   getCurrentWeather,
-  validateCity
-}; 
+  validateCity,
+};

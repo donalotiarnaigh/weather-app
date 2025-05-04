@@ -13,7 +13,7 @@ const config = {
   // Server configuration
   port: process.env.PORT || 3000,
   nodeEnv: process.env.NODE_ENV || 'development',
-  
+
   // API Keys
   openWeatherApiKey: process.env.OPENWEATHER_API_KEY,
 
@@ -22,24 +22,30 @@ const config = {
 
   // Weather API settings
   defaultUnit: 'metric',
+
+  // Rate limiting
+  rateLimit: {
+    global: parseInt(process.env.RATE_LIMIT_GLOBAL || '100'),
+    weatherApi: parseInt(process.env.RATE_LIMIT_WEATHER_API || '30'),
+  },
 };
 
 // Helper function to validate configuration
 function validateConfig() {
   const requiredVars = ['openWeatherApiKey'];
-  
+
   // Check for required variables
   const missing = requiredVars.filter(name => !config[name]);
-  
+
   if (missing.length > 0) {
     console.error(`Error: Missing required environment variables: ${missing.join(', ')}`);
     process.exit(1);
   }
-  
+
   return true;
 }
 
-// Validate configuration on module load
+// Validate configuration
 validateConfig();
 
-module.exports = config; 
+module.exports = config;

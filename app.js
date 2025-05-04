@@ -30,7 +30,7 @@ app.listen(config.port, () => {
 });
 
 // Handle unhandled promise rejections
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', err => {
   console.error('Unhandled Rejection:', err);
   // In a production environment, you might want to:
   // - Log to an error monitoring service
@@ -38,7 +38,7 @@ process.on('unhandledRejection', (err) => {
 });
 
 // Handle uncaught exceptions
-process.on('uncaughtException', (err) => {
+process.on('uncaughtException', err => {
   console.error('Uncaught Exception:', err);
   // In a production environment, you might want to:
   // - Log to an error monitoring service

@@ -11,9 +11,9 @@ module.exports = {
   // Utility functions
   validateConfig,
   httpsGet,
-  
+
   // Error classes
   AppError,
   ApiError,
-  ValidationError
-}; 
+  ValidationError,
+};

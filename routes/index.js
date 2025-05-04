@@ -3,7 +3,6 @@
  * Central export point for all routes
  */
 
-const express = require('express');
 const weatherRoutes = require('./weather');
 
 /**
@@ -13,15 +12,15 @@ const weatherRoutes = require('./weather');
 function registerRoutes(app) {
   // Register weather routes
   app.use('/', weatherRoutes);
-  
+
   // Error route for 404
   app.use((req, res) => {
     res.status(404).render('error', {
       title: 'Page Not Found',
       message: 'The page you are looking for does not exist.',
-      statusCode: 404
+      statusCode: 404,
     });
   });
 }
 
-module.exports = registerRoutes; 
+module.exports = registerRoutes;

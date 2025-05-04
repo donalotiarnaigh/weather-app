@@ -4,7 +4,11 @@
  */
 
 const errorHandler = require('./errorHandler');
+const validationMiddleware = require('./validationMiddleware');
+const rateLimitMiddleware = require('./rateLimitMiddleware');
 
 module.exports = {
-  errorHandler
-}; 
+  errorHandler,
+  validationMiddleware,
+  rateLimitMiddleware,
+};
