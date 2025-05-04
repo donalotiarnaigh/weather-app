@@ -1,3 +1,6 @@
+// Load environment variables from .env file
+require('dotenv').config();
+
 const express = require('express');
 const https = require("https");
 const app = express()
@@ -18,7 +21,7 @@ app.post("/", function(req, res) {
 
   const query = req.body.cityName;
   const unit = "units=metric"
-  const apiKey = "7ee464c85f036e0568018df80b538645";
+  const apiKey = process.env.OPENWEATHER_API_KEY;
   const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&" + unit + "&appid=" + apiKey + ""
 
   https.get(url, function(response) {
@@ -46,6 +49,6 @@ app.post("/", function(req, res) {
 
 //Run server//
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Server running on port 3000");
+app.listen(port, function(){
+  console.log(`Server running on port ${port}`);
 });
