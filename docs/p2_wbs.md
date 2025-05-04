@@ -27,6 +27,7 @@
   - 2.1.4 [✓] Implement improved typography system
   - 2.1.5 [✓] Standardize spacing and layout variables
   - 2.1.6 [✓] Create responsive card components for weather data
+  - 2.1.7 [✓] Add favicon for consistent branding
 
 - **2.2 Accessibility Enhancements**
   - 2.2.1 [✓] Audit current accessibility issues
@@ -112,6 +113,10 @@
   - Created consistent error presentation
   - Added intelligent error titles
   - Ensured graceful API error handling
+  - Fixed test compatibility issues
+- **May 6, 2025**: Application Usability Improvements
+  - Added favicon for consistent branding across browser tabs and bookmarks
+  - Implemented robust server startup with automatic port failover
   - Fixed test compatibility issues
 
 ## Dependencies and Prerequisites

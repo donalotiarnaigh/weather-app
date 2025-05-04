@@ -23,9 +23,11 @@ function configureApp(app) {
           defaultSrc: ["'self'"],
           scriptSrc: ["'self'", 'cdn.jsdelivr.net'],
           styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', 'cdn.jsdelivr.net'],
-          imgSrc: ["'self'", 'data:', 'openweathermap.org'],
+          imgSrc: ["'self'", 'data:', 'openweathermap.org', '*.openweathermap.org'],
           fontSrc: ["'self'", 'fonts.gstatic.com', 'cdn.jsdelivr.net'],
           connectSrc: ["'self'", 'api.openweathermap.org'],
+          manifestSrc: ["'self'"],
+          objectSrc: ["'none'"],
         },
       },
     })
