@@ -8,6 +8,8 @@ A modern, secure Node.js/Express application for retrieving and displaying weath
 - **Modern Architecture**: Modular codebase with separation of concerns
 - **Security**: Input validation, rate limiting, and HTTP security headers
 - **Error Handling**: Comprehensive error handling with custom error classes
+- **Responsive UI**: Bootstrap 5-based interface optimized for all devices
+- **Accessibility**: ARIA labels, proper contrast, and keyboard navigation
 - **Development Tools**: ESLint, Prettier, and Jest for testing
 - **Automated Testing**: Comprehensive test suite with 95%+ code coverage
 - **CI/CD**: Git hooks and GitHub Actions for continuous integration
@@ -16,6 +18,8 @@ A modern, secure Node.js/Express application for retrieving and displaying weath
 
 - **Backend**: Node.js, Express.js
 - **View Engine**: EJS
+- **CSS Framework**: Bootstrap 5.3+
+- **Icons**: Bootstrap Icons
 - **API**: OpenWeatherMap API
 - **Testing**: Jest, Supertest
 - **Code Quality**: ESLint, Prettier, Husky
@@ -57,10 +61,39 @@ A modern, secure Node.js/Express application for retrieving and displaying weath
 
 5. Open your browser and navigate to `http://localhost:3000`
 
+   - If port 3000 is in use, the application will automatically use the next available port
+   - Check the console output for the actual port being used
+
 ## Usage
 
-- Enter a city name in the search form and submit to see current weather details
-- Access weather directly via URL: `/weather/CityName`
+### Basic Weather Lookup
+
+1. Enter a city name in the search form on the home page
+2. Click the "Search" button
+3. View the current weather details for that city
+
+### Direct Weather Access
+
+You can also access weather information directly via URL:
+```
+http://localhost:3000/weather/CityName
+```
+
+### Error Handling
+
+- If the city is not found, an error message will be displayed
+- Rate limits protect against excessive requests (30 per 15 minutes)
+- Detailed error information helps diagnose issues
+
+## Documentation
+
+Comprehensive documentation is available in the `docs` directory:
+
+- [API Documentation](docs/api.md) - Information about endpoints and responses
+- [UI Components](docs/ui-components.md) - Design system and UI component usage
+- [Developer Guide](docs/developer-guide.md) - Onboarding guide for developers
+- [Code Organization Assessment](docs/assessment/code-organization-assessment.md) - Analysis of code structure
+- [Code Improvements](docs/assessment/code-improvements.md) - Summary of recent code improvements
 
 ## Development
 
@@ -79,20 +112,21 @@ A modern, secure Node.js/Express application for retrieving and displaying weath
 
 ```
 weather-app/
+├── app.js              # Application entry point
 ├── config/             # Configuration files
 ├── middleware/         # Express middleware
 ├── routes/             # Route handlers
 ├── services/           # Business logic and API services
 ├── utils/              # Utility functions and helpers
 ├── views/              # EJS templates
-├── public/             # Static files
+│   ├── css/            # CSS files including variables
+│   └── images/         # Images and icons
+├── docs/               # Documentation
 ├── tests/              # Test files
 │   ├── unit/           # Unit tests
 │   └── integration/    # Integration tests
 ├── .github/workflows/  # GitHub Actions workflows
-├── .husky/             # Git hooks
-├── app.js              # Application entry point
-└── README.md           # Project documentation
+└── .husky/             # Git hooks
 ```
 
 ## Environment Variables
@@ -105,65 +139,25 @@ weather-app/
 | `RATE_LIMIT_GLOBAL` | Global rate limit (requests per 15 min) | 100 |
 | `RATE_LIMIT_WEATHER_API` | Weather API rate limit (requests per 15 min) | 30 |
 
-## Testing Infrastructure
+## Recent Enhancements (Phase 2)
 
-### Running Tests
-
-- **Run all tests**: `npm test`
-- **Run tests in watch mode**: `npm run test:watch`
-- **Run tests with coverage**: `npm run test:coverage`
-
-### Test Coverage
-
-The project maintains high test coverage with the following thresholds:
-- Statements: 75% (currently 95.59%)
-- Branches: 70% (currently 84.41%)
-- Functions: 75% (currently 96.29%)
-- Lines: 75% (currently 95.56%)
-
-To view the coverage report:
-1. Run `npm run test:coverage`
-2. Review the summary in the terminal
-3. For a detailed HTML report, open `coverage/lcov-report/index.html` in your browser
-
-### Test Structure
-
-- **Unit Tests**: Located in `tests/unit/` directory, testing individual functions and components
-  - Config tests
-  - Middleware tests
-  - Service tests
-  - Utility tests
-- **Integration Tests**: Located in `tests/integration/` directory, testing API endpoints and application flow
-
-### Git Hooks
-
-This project uses Husky to enforce code quality at different stages of the Git workflow:
-
-- **Pre-commit Hook**: Runs on `git commit`
-  - Executes `lint-staged` to run linting and formatting on staged files
-  - Ensures code style consistency before commit
+- **UI Modernization**
+  - Updated to Bootstrap 5.3+ from Bootstrap 3.3.7
+  - Implemented responsive card-based design
+  - Added CSS variables for consistent styling
+  - Improved accessibility features
+  - Added favicon and branding elements
   
-- **Pre-push Hook**: Runs on `git push`
-  - Executes the full test suite with coverage checks
-  - Ensures code meets coverage thresholds before pushing
-  - Prevents pushing code that breaks tests or reduces coverage
+- **Code Quality Improvements**
+  - Reduced code duplication in route handlers
+  - Implemented consistent error handling
+  - Enhanced HTTP utilities with timeout handling
+  - Improved documentation with JSDoc comments
 
-### Continuous Integration
-
-GitHub Actions is configured to run on each push to main and on pull requests:
-1. Sets up Node.js environment
-2. Installs dependencies
-3. Runs linting checks
-4. Executes test suite with coverage
-5. Uploads coverage report to Codecov (if configured)
-
-## Security Features
-
-- **Input Validation**: All user inputs are validated
-- **Rate Limiting**: Prevents abuse of the API
-- **Security Headers**: Helmet.js for HTTP security headers
-- **Content Security Policy**: Restricts resource loading
-
+- **Reliability Enhancements**
+  - Added automatic port failover for server startup
+  - Enhanced error handling and user feedback
+  
 ## License
 
 ISC
