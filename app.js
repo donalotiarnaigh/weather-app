@@ -1,54 +1,47 @@
-// Load environment variables from .env file
-require('dotenv').config();
+/**
+ * Main application entry point
+ */
 
+// Load configuration
+const config = require('./config');
+const { configureApp } = require('./config/app');
+
+// Import dependencies
 const express = require('express');
-const https = require("https");
-const app = express()
-const bodyParser = require("body-parser");
-const ejs = require("ejs");
-const port = process.env.PORT || 3000;
+const registerRoutes = require('./routes');
+const { errorHandler } = require('./middleware');
 
+// Create Express application
+const app = express();
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("public"));
-app.set("view engine", "ejs");
+// Configure the application
+configureApp(app);
 
-app.get("/", function(req, res) {
-  res.render("home");
+// Register routes
+registerRoutes(app);
+
+// Add error handling middleware
+app.use(errorHandler);
+
+// Start the server
+app.listen(config.port, () => {
+  console.log(`Server running on port ${config.port}`);
+  console.log(`Environment: ${config.nodeEnv}`);
 });
 
-app.post("/", function(req, res) {
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Rejection:', err);
+  // In a production environment, you might want to:
+  // - Log to an error monitoring service
+  // - Gracefully shutdown the server
+});
 
-  const query = req.body.cityName;
-  const unit = "units=metric"
-  const apiKey = process.env.OPENWEATHER_API_KEY;
-  const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&" + unit + "&appid=" + apiKey + ""
-
-  https.get(url, function(response) {
-    console.log(response.statusCode);
-
-    response.on("data", function(data) {
-        console.log(req.body.cityName);
-
-        const weatherData = JSON.parse(data);
-        const temp = weatherData.main.temp;
-        const description = weatherData.weather[0].description;
-        const icon = weatherData.weather[0].icon;
-        const location = query.charAt(0).toUpperCase() + query.slice(1);
-        const imageURL = 'http://openweathermap.org/img/wn/' + icon +  '@2x.png';
-
-
-        res.render("weather", {temp: temp, description: description, icon:icon, location: location, imageURL:imageURL});
-    })
-  })});
-
-
-
-
-
-
-//Run server//
-
-app.listen(port, function(){
-  console.log(`Server running on port ${port}`);
+// Handle uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  // In a production environment, you might want to:
+  // - Log to an error monitoring service
+  // - Gracefully shutdown the server
+  process.exit(1); // Exit with error
 });

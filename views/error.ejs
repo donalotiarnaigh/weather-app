@@ -1,0 +1,20 @@
+<%- include("partials/header"); -%>
+
+<div class="error-container">
+  <div class="error-content">
+    <h1 class="error-title"><%= title %></h1>
+    <div class="error-message">
+      <p><%= message %></p>
+    </div>
+    <div class="error-status">
+      <% if (statusCode) { %>
+        <p class="error-code">Status code: <%= statusCode %></p>
+      <% } %>
+    </div>
+    <div class="error-actions">
+      <a href="/" class="btn btn-primary">Return to Home</a>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer"); -%> 
