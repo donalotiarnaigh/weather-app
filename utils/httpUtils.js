@@ -59,11 +59,13 @@ function httpsGet(url, options = {}) {
         reject(new ApiError(`Request error: ${error.message}`, 500, 'HTTP Client'));
       });
 
-    // Set request timeout
-    request.setTimeout(timeout, () => {
-      request.destroy();
-      reject(new ApiError(`Request timeout after ${timeout}ms`, 408, 'HTTP Client'));
-    });
+    // Set request timeout if the method exists (important for testing)
+    if (request && typeof request.setTimeout === 'function') {
+      request.setTimeout(timeout, () => {
+        request.destroy();
+        reject(new ApiError(`Request timeout after ${timeout}ms`, 408, 'HTTP Client'));
+      });
+    }
   });
 }
 

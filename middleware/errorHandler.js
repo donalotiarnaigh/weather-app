@@ -38,6 +38,13 @@ function errorHandler(err, req, res, _next) {
     });
   }
 
+  // For generic 500 errors (including those without a status code), use Server Error title
+  if (!err.statusCode || err.statusCode === 500) {
+    return renderErrorPage(res, err, {
+      defaultTitle: 'Server Error',
+    });
+  }
+
   // For all other errors, use the standard error page renderer
   return renderErrorPage(res, err);
 }
