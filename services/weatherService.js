@@ -30,7 +30,7 @@ async function getCurrentWeather(city, unit = config.defaultUnit) {
     // Process and return the data
     return {
       location: city.charAt(0).toUpperCase() + city.slice(1),
-      temperature: weatherData.main.temp,
+      temp: weatherData.main.temp,
       description: weatherData.weather[0].description,
       icon: weatherData.weather[0].icon,
       humidity: weatherData.main.humidity,
