@@ -2,7 +2,7 @@
  * Error handling middleware
  */
 
-const { ApiError } = require('../utils');
+const { ApiError, renderErrorPage } = require('../utils');
 
 /**
  * Global error handler middleware
@@ -15,33 +15,31 @@ function errorHandler(err, req, res, _next) {
   // Log the error for debugging
   console.error('Error:', err);
 
-  // Set default status code and message
-  let statusCode = err.statusCode || 500;
-  let message = err.message || 'Something went wrong';
-  let title = 'Error';
-
-  // Handle API errors
+  // Special handling for API errors to provide better context
   if (err instanceof ApiError) {
-    title = `Service Error (${err.service})`;
-    message = err.getUserMessage();
+    const apiError = err;
+
+    // Create a more user-friendly error
+    apiError.message = apiError.getUserMessage();
+
+    // Use custom title for the error page
+    return renderErrorPage(res, apiError, {
+      defaultTitle: `Service Error (${apiError.service})`,
+    });
   }
 
-  // Handle other types of errors
-  if (statusCode === 500) {
-    title = 'Server Error';
+  // For 500 errors in production, mask the details
+  if ((err.statusCode === 500 || !err.statusCode) && process.env.NODE_ENV === 'production') {
+    const maskedError = new Error('An unexpected error occurred. Please try again later.');
+    maskedError.statusCode = 500;
 
-    // In production, don't expose detailed error messages
-    if (process.env.NODE_ENV === 'production') {
-      message = 'An unexpected error occurred. Please try again later.';
-    }
+    return renderErrorPage(res, maskedError, {
+      defaultTitle: 'Server Error',
+    });
   }
 
-  // Render the error page
-  res.status(statusCode).render('error', {
-    title,
-    message,
-    statusCode,
-  });
+  // For all other errors, use the standard error page renderer
+  return renderErrorPage(res, err);
 }
 
 module.exports = errorHandler;

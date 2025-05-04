@@ -6,8 +6,35 @@
 const express = require('express');
 const router = express.Router();
 const { weatherService } = require('../services');
-const { ValidationError } = require('../utils');
+const { ValidationError, renderErrorPage } = require('../utils');
 const { validationMiddleware, rateLimitMiddleware } = require('../middleware');
+
+/**
+ * Creates a route handler for weather data requests
+ * @param {Function} getParam - Function to extract city name from request
+ * @returns {Function} Express route handler
+ */
+function createWeatherHandler(getParam) {
+  return async (req, res, next) => {
+    try {
+      const cityName = getParam(req);
+
+      // Get weather data
+      const weatherData = await weatherService.getCurrentWeather(cityName);
+
+      // Render weather data
+      res.render('weather', weatherData);
+    } catch (error) {
+      // Handle specific errors
+      if (error instanceof ValidationError) {
+        return renderErrorPage(res, error);
+      }
+
+      // Pass other errors to error handler
+      next(error);
+    }
+  };
+}
 
 /**
  * GET / - Home page with weather search form
@@ -23,29 +50,7 @@ router.post(
   '/',
   rateLimitMiddleware.weatherApiLimiter,
   validationMiddleware.validateWeatherSearch,
-  async (req, res, next) => {
-    try {
-      const cityName = req.body.cityName;
-
-      // Get weather data
-      const weatherData = await weatherService.getCurrentWeather(cityName);
-
-      // Render weather data
-      res.render('weather', weatherData);
-    } catch (error) {
-      // Handle specific errors
-      if (error instanceof ValidationError) {
-        return res.status(400).render('error', {
-          title: 'Invalid Input',
-          message: error.message,
-          statusCode: 400,
-        });
-      }
-
-      // Pass other errors to error handler
-      next(error);
-    }
-  }
+  createWeatherHandler(req => req.body.cityName)
 );
 
 /**
@@ -55,29 +60,7 @@ router.get(
   '/weather/:city',
   rateLimitMiddleware.weatherApiLimiter,
   validationMiddleware.validateCityParam,
-  async (req, res, next) => {
-    try {
-      const cityName = req.params.city;
-
-      // Get weather data
-      const weatherData = await weatherService.getCurrentWeather(cityName);
-
-      // Render weather data
-      res.render('weather', weatherData);
-    } catch (error) {
-      // Handle specific errors
-      if (error instanceof ValidationError) {
-        return res.status(400).render('error', {
-          title: 'Invalid Input',
-          message: error.message,
-          statusCode: 400,
-        });
-      }
-
-      // Pass other errors to error handler
-      next(error);
-    }
-  }
+  createWeatherHandler(req => req.params.city)
 );
 
 module.exports = router;

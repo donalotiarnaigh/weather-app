@@ -4,6 +4,7 @@
  */
 
 const { body, param, validationResult } = require('express-validator');
+const { ValidationError, renderErrorPage } = require('../utils');
 
 /**
  * Middleware to process validation results
@@ -31,12 +32,9 @@ const validateRequest = (req, res, next) => {
       });
     }
 
-    // For web interface
-    return res.status(400).render('error', {
-      title: 'Invalid Input',
-      message: errorMessages.join(', '),
-      statusCode: 400,
-    });
+    // Create a validation error and use the standard error renderer
+    const error = new ValidationError(errorMessages.join(', '), validationErrors);
+    return renderErrorPage(res, error);
   }
 
   next();

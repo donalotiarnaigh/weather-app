@@ -67,3 +67,6 @@ out/
 # OS specific files
 .DS_Store
 Thumbs.db 
+docs/assessment/code-improvements.md
+docs/assessment/code-organization-assessment.md
+docs/assessment/js-performance-audit.md
