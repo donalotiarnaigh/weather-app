@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:a11y": "node tests/accessibility/run-a11y-tests.js"
   },
   "lint-staged": {
     "*.js": [
@@ -34,6 +35,8 @@
     "memory-cache": "^0.2.0"
   },
   "devDependencies": {
+    "@axe-core/puppeteer": "^4.10.1",
+    "axe-core": "^4.10.3",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",

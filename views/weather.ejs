@@ -8,6 +8,7 @@
           src="<%= imageURL %>"
           alt="Weather icon for <%= description %>"
           class="weather-icon"
+          id="weatherIcon"
         />
       </div>
 
@@ -31,5 +32,8 @@
     </div>
   </div>
 </div>
+
+<!-- Include loading states JavaScript -->
+<script src="/js/loadingStates.js"></script>
 
 <%- include("partials/footer"); -%>

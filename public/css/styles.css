@@ -200,3 +200,84 @@ main.container {
     font-size: 1.5rem;
   }
 }
+
+/* Loading states and transitions */
+.weather-search-card,
+.weather-result {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.weather-search-card.visible,
+.weather-result.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading state for forms */
+form.is-loading .input-group {
+  opacity: 0.7;
+}
+
+form.is-loading .btn {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+/* Loading state for weather icons */
+.weather-icon.loading {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Loading skeleton screens */
+.skeleton-loader {
+  background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 0.375rem;
+}
+
+.skeleton-text {
+  height: 1.25rem;
+  margin-bottom: 0.5rem;
+  width: 70%;
+}
+
+.skeleton-title {
+  height: 2rem;
+  margin-bottom: 1rem;
+  width: 50%;
+}
+
+.skeleton-circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin: 1rem auto;
+}
+
+/* Animations */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+}
