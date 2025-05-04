@@ -21,10 +21,10 @@ function configureApp(app) {
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
-          scriptSrc: ["'self'"],
-          styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
-          imgSrc: ["'self'", 'data:', 'openweathermap.org'], // Allow OpenWeatherMap images
-          fontSrc: ["'self'", 'fonts.gstatic.com'],
+          scriptSrc: ["'self'", 'cdn.jsdelivr.net'],
+          styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com', 'cdn.jsdelivr.net'],
+          imgSrc: ["'self'", 'data:', 'openweathermap.org'],
+          fontSrc: ["'self'", 'fonts.gstatic.com', 'cdn.jsdelivr.net'],
           connectSrc: ["'self'", 'api.openweathermap.org'],
         },
       },

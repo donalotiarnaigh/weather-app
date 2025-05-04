@@ -23,23 +23,7 @@ a:hover, a:focus {
   text-decoration: underline;
 }
 
-/* Header and navbar styles */
-.navbar {
-  box-shadow: var(--box-shadow-sm);
-}
-
-.navbar-brand, .nav-link {
-  color: var(--text-light) !important;
-  font-weight: 500;
-}
-
-.navbar-brand:hover, .nav-link:hover {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-.navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.5);
-}
+/* Header and navbar styles - REMOVED CONFLICTING STYLES */
 
 /* Main content container */
 main.container {
@@ -146,12 +130,7 @@ main.container {
   margin-top: auto;
   width: 100%;
   background-color: var(--primary);
-  color: var(--text-light);
   box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-.footer p {
-  font-weight: 500;
 }
 
 /* Error page styles */
