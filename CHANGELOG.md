@@ -1,55 +1,60 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to the Weather App project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.1] - 2025-05-11
+## [1.0.0] - 2025-05-07
 
-### Fixed
-- CI pipeline environment configuration for tests
-- Added Jest setup file to mock required environment variables
-- Updated GitHub Actions workflow to provide environment variables for tests
-- Prevented process.exit from stopping test execution
+### Phase 2 Enhancements
 
-## [1.1.0] - 2025-05-10
+#### Added
+- Modern UI with Bootstrap 5.3.3 (upgraded from 3.3.7)
+- Responsive card-based design for all device sizes
+- Improved weather information layout with better visual hierarchy
+- Weather condition-based styling for feedback
+- Loading indicators for search operations
+- ARIA labels for improved accessibility
+- Favicon and consistent branding
+- Comprehensive accessibility testing using axe-core and Puppeteer
+- Automated accessibility reporting with screenshots
+- CSS variables for consistent styling
+- Improved error handling with detailed feedback
 
-### Added
-- Comprehensive testing infrastructure with Jest
-- Unit tests for all major components:
-  - Services (weatherService.test.js)
-  - Config (config.test.js)
-  - Middleware (errorHandler.test.js, rateLimiter.test.js, validationMiddleware.test.js)
-  - Utils (httpUtils.test.js, validateConfig.test.js, errors.test.js)
-- Integration tests for API endpoints (app.test.js, routes/weather.test.js)
-- Test utilities module with helper functions (testUtils.js)
-- Husky for Git hooks:
-  - Pre-commit hook for linting and formatting
-  - Pre-push hook for full test suite with coverage thresholds
-- GitHub Actions workflow for CI/CD
-- Code coverage thresholds (75% statements, 70% branches, 75% functions, 75% lines)
-- Updated README.md with testing documentation
+#### Changed
+- Enhanced search input field styling and usability
+- Improved navigation and form controls
+- Refactored codebase for better organization
+- Enhanced error messages and user feedback
+- Optimized HTTP utilities with timeout handling
+- Updated to latest dependencies
+- Improved keyboard navigation
 
-### Changed
-- Improved error handling in middleware
-- Enhanced validation for API parameters
-- Optimized weather service implementation
-- Updated ESLint configuration to recognize Jest globals
+#### Fixed
+- Contrast issues with text and buttons
+- Input validation and error feedback
+- Form labeling for screen readers
+- Navigation and footer alignment
+- Search button responsiveness
+- Error display formatting
+- Accessibility violations (all pages now pass WCAG 2.1 AA)
 
-### Fixed
-- Edge case handling in error middleware
-- Rate limiting configuration for special cases
-- API error responses for better client handling
+### Developer Experience
 
-## [1.0.0] - 2025-05-05
+#### Added
+- Comprehensive API documentation
+- UI component documentation
+- Developer onboarding guide
+- Improved inline code comments with JSDoc
+- Automated accessibility testing in pre-commit hooks
+- Detailed code organization documentation
 
-### Added
-- Initial release of modernized weather application
-- Modern modular architecture
-- Environment variable configuration
-- Security features (input validation, rate limiting, HTTP security headers)
-- Error handling with custom error classes
-- Development tools (ESLint, Prettier)
-- Basic test setup with Jest
-- Enhanced documentation 
+## [0.1.0] - 2025-05-01
+
+### Initial Release
+
+- Basic weather search functionality
+- Weather data display
+- Error handling for API failures
+- Initial responsive design 

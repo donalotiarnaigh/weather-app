@@ -13,7 +13,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "prepare": "husky",
-    "test:a11y": "node tests/accessibility/run-a11y-tests.js"
+    "test:a11y": "node tests/accessibility/run-a11y-tests.js",
+    "test:a11y:ci": "node --experimental-vm-modules node_modules/.bin/jest tests/accessibility"
   },
   "lint-staged": {
     "*.js": [

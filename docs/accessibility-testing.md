@@ -1,180 +1,88 @@
 # Accessibility Testing Guide
 
-This document explains how to run accessibility tests for the Weather App and how to interpret the results.
+This document provides guidelines for running and maintaining the accessibility tests for the Weather App project.
 
 ## Overview
 
-The Weather App uses automated accessibility testing with [axe-core](https://github.com/dequelabs/axe-core) and [Puppeteer](https://pptr.dev/) to check compliance with [WCAG 2.1 AA standards](https://www.w3.org/WAI/WCAG21/quickref/?versions=2.1&levels=aaa).
+The Weather App uses automated accessibility testing to ensure compliance with WCAG standards. These tests use:
 
-Our testing approach:
-1. Automated tests check for common accessibility issues
-2. Tests run against all key pages of the application
-3. Reports are generated in Markdown format for easy reading
-4. Screenshots are captured for visual reference
+- [axe-core](https://github.com/dequelabs/axe-core) - The industry-standard accessibility testing library
+- [Puppeteer](https://pptr.dev/) - A headless Chrome browser for automated testing
+- [Jest](https://jestjs.io/) - The testing framework for running the tests
 
-## Prerequisites
+## Running Accessibility Tests
 
-- Node.js (v14 or later)
-- npm (v6 or later)
-- The Weather App running locally on port 3000
+### Basic Usage
 
-## Running the Tests
-
-### Using the npm Script
-
-The simplest way to run accessibility tests is using the npm script:
+To run the accessibility tests, use one of the following commands:
 
 ```bash
-# Make sure the app is running first
-npm run dev
-
-# In another terminal, run:
+# Run accessibility tests with a dedicated script
 npm run test:a11y
+
+# Run with experimental VM modules support (for Node.js 14+)
+npm run test:a11y:ci
 ```
 
-### Using the Standalone Script
+### Node.js Version Compatibility
 
-For quick testing during development:
+Due to Puppeteer using dynamic imports, some Node.js versions require the `--experimental-vm-modules` flag. The `test:a11y:ci` command includes this flag.
 
-```bash
-# Make sure the app is running first
-npm run dev
+### Interpreting Test Results
 
-# In another terminal, run:
-node tests/accessibility/run-a11y-tests.js
-```
+After running the tests, reports will be generated in:
 
-### Using Jest
+- `tests/accessibility/reports/` - Contains detailed Markdown reports of tests
+- `tests/accessibility/screenshots/` - Contains screenshots of each page at test time
 
-For CI/CD pipelines or running as part of the test suite:
+These reports provide:
+- Summary of violations found
+- Details about each violation
+- HTML snippets of problematic elements
+- Recommendations for fixing issues
 
-```bash
-# Make sure the app is running first
-npm run dev
+## Test Configuration
 
-# In another terminal, run:
-npm test -- tests/accessibility/a11y.test.js
-```
+The accessibility tests configuration is located in `tests/accessibility/config.js`. Key settings include:
 
-## Automated Accessibility Testing
+- `baseUrl` - The base URL for accessibility testing (defaults to http://localhost:3000)
+- `pages` - The pages to test (home, weather results, error)
+- `timeout` - Test timeout in milliseconds
+- `axeConfig` - Configuration options for axe-core
 
-Accessibility tests are integrated in our development workflow in two ways:
+You can adjust the WCAG level and other settings in the `axeConfig` section.
 
-### 1. Git Hooks (Pre-commit)
+## Troubleshooting
 
-When you modify any EJS template files, the pre-commit Git hook will automatically run accessibility tests **if the application is running**. This ensures accessibility issues are caught early.
+### Common Issues
 
-To make this work:
-1. Start the application with `npm run dev`
-2. Make changes to EJS files
-3. Commit your changes
+1. **Test timeouts**: If tests time out, try increasing the `timeout` value in the config file.
 
-If the application is not running, you'll receive a warning but the commit will proceed.
+2. **Dynamic import errors**: If you see errors like `A dynamic import callback was invoked without --experimental-vm-modules`, use the `npm run test:a11y:ci` command which includes the necessary flag.
 
-### 2. GitHub Actions (CI/CD)
+3. **Screenshots not captured**: Ensure the `screenshots` directory exists and is writable.
 
-Accessibility tests run automatically as part of our CI/CD pipeline for every pull request and push to the main branch. The tests:
+### Git Pre-push Hooks
 
-1. Start the application in a test environment
-2. Run accessibility checks on all key pages
-3. Generate detailed reports and screenshots
-4. Upload the reports as artifacts in the workflow
+The pre-push Git hook has been configured to exclude accessibility tests by default to prevent issues with dynamic imports. You can still run these tests manually before committing your changes.
 
-#### Viewing CI/CD Accessibility Reports
+## Extending the Tests
 
-To view the accessibility reports from a GitHub Actions run:
+### Adding New Pages to Test
 
-1. Go to the Actions tab in the GitHub repository
-2. Select the workflow run you want to examine
-3. Scroll down to the "Artifacts" section
-4. Download the "accessibility-reports" artifact
-5. Extract the ZIP file to view the reports and screenshots
+To add a new page to test:
 
-## Test Output
+1. Add the page path to the `pages` object in `tests/accessibility/config.js`
+2. Create a new test case in `tests/accessibility/a11y.test.js`
 
-The accessibility tests generate two types of output:
+### Customizing Test Criteria
 
-1. **Reports** - Markdown files in `tests/accessibility/reports/` with detailed information about any accessibility violations
-2. **Screenshots** - PNG images in `tests/accessibility/screenshots/` showing the state of each page during testing
+You can adjust which WCAG guidelines to test against by modifying the `axeConfig` object in the configuration file. The default is set to WCAG 2.1 AA level.
 
-## Understanding the Reports
+## Best Practices
 
-Each report contains:
-
-- **Summary** - Overview of test results including total violations
-- **Violations** - Detailed list of accessibility issues found, including:
-  - Issue type and impact level
-  - Description of the problem
-  - Link to help documentation
-  - Example HTML nodes with issues
-  - Suggestions for fixing the problem
-
-## Example Report
-
-Here's an excerpt from an example report:
-
-```markdown
-# Accessibility Test Report
-
-## Summary
-
-- URL: http://localhost:3000/
-- Timestamp: 2023-05-07T15:30:45.123Z
-- Total violations: 2
-- Passing checks: 120
-- Incomplete checks: 0
-- Inapplicable checks: 50
-
-## Violations
-
-### 1. color-contrast: serious impact
-
-- Description: Elements must have sufficient color contrast
-- Help: Elements must have sufficient color contrast
-- Help URL: https://dequeuniversity.com/rules/axe/4.4/color-contrast
-- Affected nodes: 1
-
-#### Example Nodes:
-
-##### Node 1
-```html
-<small class="text-muted">Try searching for cities like London, New York, or Tokyo</small>
-```
-
-Failure Summary:
-```
-Element has insufficient color contrast of 3.37 (foreground color: #6c757d, background color: #ffffff, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-```
-```
-
-## Fixing Accessibility Issues
-
-When you find accessibility issues:
-
-1. Read the violation description carefully
-2. Check the help URL for detailed guidance
-3. Look at the specific HTML nodes that are failing
-4. Make the necessary changes to fix the issue
-5. Run the tests again to verify the fix
-
-Common fixes include:
-- Increasing color contrast
-- Adding alternative text to images
-- Ensuring proper heading structure
-- Fixing form labels
-- Adding ARIA attributes where appropriate
-
-## Continuous Improvement
-
-Accessibility should be an ongoing concern:
-
-1. Run these tests regularly during development
-2. Address accessibility issues promptly during code review
-3. Test with real assistive technologies (screen readers, etc.)
-4. Consider manual testing to supplement automated tests
-
-## Resources
-
-- [WCAG 2.1 Guidelines](https://www.w3.org/TR/WCAG21/)
-- [axe-core Rules](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)
-- [Deque University](https://dequeuniversity.com/) 
+1. **Run tests regularly** during development to catch accessibility issues early
+2. **Review the generated reports** to understand specific violations
+3. **Fix issues progressively** starting with the most severe impact violations
+4. **Commit your fixes** but not the generated reports (they're in .gitignore)
+5. **Update tests** when adding new UI components or pages 

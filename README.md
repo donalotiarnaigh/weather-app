@@ -107,6 +107,8 @@ Comprehensive documentation is available in the `docs` directory:
 - `npm run lint` - Check code with ESLint
 - `npm run lint:fix` - Fix linting issues automatically
 - `npm run format` - Format code with Prettier
+- `npm run test:a11y` - Run accessibility tests with a dedicated script
+- `npm run test:a11y:ci` - Run accessibility tests with experimental VM modules support
 
 ### Project Structure
 
